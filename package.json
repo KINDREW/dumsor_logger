@@ -1,0 +1,14 @@
+{
+  "name": "dumsor_logger",
+  "version": "1.0.0",
+  "description": "Web Application is a full-stack web application that allows users to log the times when their lights go off and when they come back on. It provides a convenient way for users to track and monitor the duration of light outages in their homes or workplaces ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dumsor"
+  ],
+  "author": "kindrew",
+  "license": "ISC"
+}
