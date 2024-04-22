@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import api from "../../utils/api";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LogTime = () => {
   const [timeData, setTimeData] = useState({
     startTime: "",
     endTime: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setTimeData({ ...timeData, [e.target.name]: e.target.value });
@@ -20,6 +22,7 @@ const LogTime = () => {
         startTime: "",
         endTime: "",
       });
+      navigate("/logs");
     } catch (err) {
       console.error("Error logging time:", err.response.data.message);
     }
@@ -43,7 +46,7 @@ const LogTime = () => {
         />
         <button type="submit">Log Time</button>
       </form>
-      <Link to={"/logs"}>Logged Dumsor Times</Link>
+      <Link to={"/logs"}>Go Home</Link>
     </div>
   );
 };

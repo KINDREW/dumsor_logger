@@ -18,9 +18,11 @@ app.use(passport.initialize());
 
 const authRoutes = require("./routes/authRoute");
 const logRoutes = require("./routes/logRoutes");
+const locationRoutes = require("./routes/locationRoute");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/logs", logRoutes);
+app.use("/api/location", locationRoutes);
 
 const PORT = process.env.PORT || 5000;
 

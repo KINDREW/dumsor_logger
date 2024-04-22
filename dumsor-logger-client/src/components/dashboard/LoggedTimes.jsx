@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import api from "../../utils/api";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoggedTimes = () => {
   const [logs, setLogs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -30,6 +33,15 @@ const LoggedTimes = () => {
           </li>
         ))}
       </ul>
+      <p>
+        Them quench am again? <Link to={"/dashboard"}>Log New</Link>
+      </p>
+      <p>
+        Add Location <Link to={"/location/add"}>Add location</Link>
+      </p>
+      <p>
+        View added Location <Link to={"/location"}>View location</Link>
+      </p>
     </div>
   );
 };

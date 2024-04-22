@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/api";
+import { Link } from "react-router-dom";
 
 const Login = ({ setLoggedIn }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = ({ setLoggedIn }) => {
       const res = await api.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
       setLoggedIn(true);
-      navigate("/dashboard");
+      navigate("/logs");
     } catch (err) {
       console.error("Error logging in:", err.response.data.message);
     }
@@ -45,6 +46,7 @@ const Login = ({ setLoggedIn }) => {
         />
         <button type="submit">Login</button>
       </form>
+      <Link to={"/register"}>Register</Link>
     </div>
   );
 };
