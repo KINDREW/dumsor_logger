@@ -20,7 +20,7 @@ const Login = ({ setLoggedIn }) => {
       const res = await api.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
       setLoggedIn(true);
-      navigate("/logs");
+      navigate("/location");
     } catch (err) {
       console.error("Error logging in:", err.response.data.message);
     }

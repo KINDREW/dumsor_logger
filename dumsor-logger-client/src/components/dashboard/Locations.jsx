@@ -24,7 +24,7 @@ const Location = () => {
       <ul>
         {locations.map((location) => (
           <li key={location._id}>
-            <div>{location.name}</div>
+            <Link to={`/logs/location/${location._id}`}>{location.name}</Link>
           </li>
         ))}
       </ul>

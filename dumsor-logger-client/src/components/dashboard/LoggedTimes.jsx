@@ -1,47 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import api from "../../utils/api";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const LoggedTimes = () => {
+  const { id } = useParams();
   const [logs, setLogs] = useState([]);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchLogs = async () => {
+    const fetchLogsByLocation = async () => {
       try {
-        const res = await api.get("/logs/logs");
+        const res = await api.get(`/logs/${id}`);
         setLogs(res.data);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching logs:", err.response.data.message);
       }
     };
-    fetchLogs();
-  }, []);
+    fetchLogsByLocation();
+  }, [id]);
 
   return (
     <div>
-      <h2>Logged Times</h2>
-      <ul>
-        {logs.map((log) => (
-          <li key={log._id}>
-            <div>Start Time: {new Date(log.startTime).toLocaleString()}</div>
-            <div>
-              End Time:{" "}
-              {log.endTime ? new Date(log.endTime).toLocaleString() : "N/A"}
-            </div>
-          </li>
-        ))}
-      </ul>
-      <p>
-        Them quench am again? <Link to={"/dashboard"}>Log New</Link>
-      </p>
-      <p>
-        Add Location <Link to={"/location/add"}>Add location</Link>
-      </p>
-      <p>
-        View added Location <Link to={"/location"}>View location</Link>
-      </p>
+      <h2>Logs for Location {id}</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {logs.map((log) => (
+            <li key={log._id}>
+              Start Time: {log.startTime}, End Time: {log.endTime}
+            </li>
+          ))}
+        </ul>
+      )}
+      <Link to={"/logs"}>Go Back to All Logs</Link>
     </div>
   );
 };

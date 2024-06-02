@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
 
           <Route path="/dashboard" element={<LogTime />} />
-          <Route path="/logs" element={<LoggedTimes />} />
+          <Route path="/logs/location/:id" element={<LoggedTimes />} />
           <Route path="/location" element={<Location />} />
           <Route path="/location/add" element={<AddLocation />} />
 
